@@ -1,0 +1,240 @@
+/* -------------------------------- */
+/* General Layout and Typography    */
+/* -------------------------------- */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  padding-top: 75px; /* to offset fixed navbar */
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 600;
+  color: #1e7e34;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ------------------------------ */
+/* Navbar Styling (Fixed Top)     */
+/* ------------------------------ */
+
+.navbar {
+  padding: 0.8rem 0;
+  background-color: #fff !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  z-index: 1030;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #198754 !important;
+}
+
+.navbar .nav-link {
+  color: #333;
+  margin-left: 15px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #198754 !important;
+}
+
+.navbar .btn-success {
+  font-weight: 500;
+  padding: 6px 16px;
+  font-size: 0.95rem;
+  border-radius: 6px;
+}
+
+/* -------------------------------- */
+/* Form Styles (Sell Crop Page)     */
+/* -------------------------------- */
+/* Hero-style background for sell page */
+form.bg-white {
+  background-color: rgba(255, 255, 255, 0.8); /* 80% opaque white */
+}
+
+.transparent-form {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.7); /* 70% opacity white */
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+
+
+.form-hero {
+  background-image: url('../assets/farm-bg.jpg'); /* replace with your image path */
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  position: relative;
+}
+
+.form-overlay {
+  background-color: rgba(0, 0, 0, 0.5); /* dark overlay */
+  min-height: 100vh;
+  padding: 60px 0;
+}
+
+/* form.bg-white {
+  max-width: 700px;
+  margin: 0 auto;
+} */
+
+.text-white {
+  color: #fff !important;
+}
+
+
+form label {
+  font-weight: 500;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="file"],
+form textarea,
+form select {
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+form input:focus,
+form textarea:focus,
+form select:focus {
+  border-color: #28a745;
+  box-shadow: none;
+}
+
+button[type="submit"] {
+  padding: 10px 30px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 6px;
+}
+
+/* Feedback Message */
+#message {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #28a745;
+  margin-top: 10px;
+}
+
+/* ------------------------------ */
+/* Categories & Cards             */
+/* ------------------------------ */
+
+.category-tile {
+  background-color: #fff;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.category-tile:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.card-img-top {
+  height: 220px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 1rem;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.badge {
+  font-size: 0.95rem;
+}
+
+/* ----------------------------- */
+/* Footer                        */
+/* ----------------------------- */
+
+footer {
+  background-color: #198754;
+  color: #fff;
+  padding: 15px 0;
+}
+
+/* ----------------------------- */
+/* Responsive Design             */
+/* ----------------------------- */
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .navbar .nav-link {
+    margin-left: 0;
+    margin-right: 10px;
+  }
+
+  .card-img-top {
+    height: 180px;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+  }
+}
+
+
+/* .transparent-form {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.75); /* 75% transparent white */
+  /* padding: 30px;
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  color: #000;
+} */
+
+/* Ensure text and inputs remain solid */
+/* .transparent-form input,
+.transparent-form select,
+.transparent-form textarea,
+.transparent-form label {
+  background-color: #fff;
+  color: #000;
+} */ 
