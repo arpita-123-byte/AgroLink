@@ -3,20 +3,30 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
-const Crop = require('./models/Crop'); // adjust if different path
+
+const Crop = require('./models/Crop');
 
 const app = express();
 app.use(cors());
-app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(express.static(__dirname));
+
+// ✅ Corrected GET route
 app.get('/api/crops', async (req, res) => {
   try {
     const crops = await Crop.find();
-    res.json(crops);
+
+    // Fix backslashes in image paths
+    const fixedCrops = crops.map(crop => ({
+      ...crop._doc,
+      image: crop.image?.replace(/\\/g, '/')
+    }));
+
+    res.json(fixedCrops);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch crops' });
   }
 });
-
 
 // ✅ Multer storage setup
 const storage = multer.diskStorage({
@@ -29,19 +39,32 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
-// ✅ Connect MongoDB
-mongoose.connect('mongodb://localhost:27017/agrolink', {
-  // `useNewUrlParser` & `useUnifiedTopology` no longer needed in v6+
-});
-mongoose.connection.once('open', () => console.log("MongoDB connected"));
+// ✅ MongoDB connection
+mongoose.connect('mongodb://localhost:27017/agrolink');
 
-// ✅ Route to handle crop submission
+mongoose.connection.once('open', async () => {
+  console.log("MongoDB connected");
+
+  // Optional: One-time fix to permanently update paths in DB
+  try {
+    const crops = await Crop.find();
+    for (const crop of crops) {
+      if (crop.image.includes('\\')) {
+        const fixedPath = crop.image.replace(/\\/g, '/');
+        await Crop.updateOne({ _id: crop._id }, { $set: { image: fixedPath } });
+        console.log(`✅ Fixed path for: ${crop.name}`);
+      }
+    }
+    console.log("✔️ Image paths cleaned");
+  } catch (err) {
+    console.error("❌ Error fixing image paths:", err);
+  }
+});
+
+// ✅ Crop submission endpoint
 app.post('/api/crops', upload.single('image'), async (req, res) => {
   try {
     const { name, category, price, quantity, location, description } = req.body;
-
-    console.log('Received fields:', req.body);
-    console.log('Received file:', req.file);
 
     const newCrop = new Crop({
       name,
@@ -50,12 +73,11 @@ app.post('/api/crops', upload.single('image'), async (req, res) => {
       quantity,
       location,
       description,
-      image: req.file ? req.file.path : ''
+      image: req.file ? req.file.path.replace(/\\/g, "/") : ''
     });
 
     await newCrop.save();
     res.status(201).json({ message: 'Crop listed successfully' });
-
   } catch (err) {
     console.error(err);
     res.status(400).json({ error: err.message });
