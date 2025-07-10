@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<<<<<<< HEAD
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Browse Crops | AgroLink</title>
@@ -10,6 +11,17 @@
 <body>
 
 <!-- Navbar -->
+=======
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Browse Crops | AgroLink</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style1.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+>>>>>>> 4b76e3fca8c460905c0acc17cd2d25a3ca9d19ee
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
   <div class="container">
     <a class="navbar-brand fw-bold text-success" href="#">AgroLink</a>
@@ -19,6 +31,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+<<<<<<< HEAD
      <ul class="navbar-nav align-items-center">
       <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
       <li class="nav-item"><a class="nav-link" href="crops.html">Browse Crops</a></li>
@@ -60,10 +73,42 @@
           <input type="range" class="form-range" min="10" max="5000" id="priceRange" value="5000" />
           <p class="text-muted">Up to ₹<span id="priceValue">5000</span></p>
         </div>
+=======
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="crops.html">Browse Crops</a></li>
+        <li class="nav-item"><a class="nav-link" href="sell.html">Sell Crops</a></li>
+        <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+        <li class="nav-item"><a class="btn btn-success ms-3" href="register.html">Join</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid mt-5">
+  <div class="row">
+    <!-- Sidebar Filters -->
+    <div class="col-md-3 bg-light p-4">
+      <h5>Filters</h5>
+      <div class="mb-3">
+        <label class="form-label">Category</label>
+        <select class="form-select" id="categoryFilter">
+          <option value="All">All</option>
+          <option value="Fruits">Fruits</option>
+          <option value="Vegetables">Vegetables</option>
+          <option value="Grains">Grains</option>
+          <option value="Spices">Spices</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Price Range</label>
+        <input type="range" class="form-range" min="10" max="5000" id="priceRange" value="5000">
+        <p class="text-muted">Up to ₹<span id="priceValue">5000</span></p>
+>>>>>>> 4b76e3fca8c460905c0acc17cd2d25a3ca9d19ee
       </div>
     </div>
 
     <!-- Crop Grid -->
+<<<<<<< HEAD
     <div class="col-md-9 p-4">
       <div class="row g-4" id="cropGrid">
         <!-- Cards will be inserted here dynamically -->
@@ -93,3 +138,297 @@
 
 
 
+=======
+    <!-- <div class="row g-4" id="cropGrid"> -->
+      <div class="col-md-9 p-4">
+  <div class="row g-4" id="cropContainer">
+  <!-- Fruits -->
+  <div class="col-md-4">
+    <div class="card" data-category="Fruits" data-price="800">
+      <img src="./assets/mangoes.jpg" class="card-img-top" alt="Mangoes">
+      <div class="card-body">
+        <h5 class="card-title">Alphonso Mangoes</h5>
+        <p class="card-text">Sweet and juicy mangoes from Maharashtra.</p>
+        <span class="badge bg-success">₹800/dozen</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card" data-category="Fruits" data-price="150">
+      <img src="./assets/bananas.jpg" class="card-img-top" alt="Bananas">
+      <div class="card-body">
+        <h5 class="card-title">Bananas</h5>
+        <p class="card-text">Farm-fresh bananas from Tamil Nadu.</p>
+        <span class="badge bg-success">₹150/dozen</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card" data-category="Fruits" data-price="120">
+      <img src="./assets/aaples.jpg" class="card-img-top" alt="Apples">
+      <div class="card-body">
+        <h5 class="card-title">Kinnaur Apples</h5>
+        <p class="card-text">Crisp and juicy apples from Himachal.</p>
+        <span class="badge bg-success">₹120/kg</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card" data-category="Fruits" data-price="90">
+      <img src="./assets/oranges.webp" class="card-img-top" alt="Oranges">
+      <div class="card-body">
+        <h5 class="card-title">Nagpur Oranges</h5>
+        <p class="card-text">Bright and tangy oranges.</p>
+        <span class="badge bg-success">₹90/kg</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card" data-category="Fruits" data-price="200">
+      <img src="./assets/pears.jpg" class="card-img-top" alt="Pears">
+      <div class="card-body">
+        <h5 class="card-title">Fresh Pears</h5>
+        <p class="card-text">Delicious and fiber-rich pears.</p>
+        <span class="badge bg-success">₹200/kg</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card" data-category="Fruits" data-price="75">
+      <img src="./assets/watermelon.jpeg" class="card-img-top" alt="Watermelon">
+      <div class="card-body">
+        <h5 class="card-title">Watermelon</h5>
+        <p class="card-text">Hydrating summer fruit from Rajasthan.</p>
+        <span class="badge bg-success">₹75/piece</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card" data-category="Fruits" data-price="100">
+      <img src="./assets/fruits.jpg" class="card-img-top" alt="Mixed Fruits">
+      <div class="card-body">
+        <h5 class="card-title">Mixed Seasonal Fruits</h5>
+        <p class="card-text">Combination of seasonal varieties.</p>
+        <span class="badge bg-success">₹100/kg</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vegetables -->
+  <div class="col-md-4">
+    <div class="card" data-category="Vegetables" data-price="25">
+      <img src="./assets/potatoes.webp" class="card-img-top" alt="Potatoes">
+      <div class="card-body">
+        <h5 class="card-title">Organic Potatoes</h5>
+        <p class="card-text">Himalayan soil-grown potatoes.</p>
+        <span class="badge bg-success">₹25/kg</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card" data-category="Vegetables" data-price="60">
+      <img src="./assets/tomatoes.jpg" class="card-img-top" alt="Tomatoes">
+      <div class="card-body">
+        <h5 class="card-title">Tomatoes</h5>
+        <p class="card-text">Bright red and juicy tomatoes.</p>
+        <span class="badge bg-success">₹60/kg</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card" data-category="Vegetables" data-price="90">
+      <img src="./assets/carrots.webp" class="card-img-top" alt="Carrots">
+      <div class="card-body">
+        <h5 class="card-title">Carrots</h5>
+        <p class="card-text">Crunchy and sweet carrots.</p>
+        <span class="badge bg-success">₹90/kg</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card" data-category="Vegetables" data-price="110">
+      <img src="./assets/cabbage.jpg" class="card-img-top" alt="Cabbage">
+      <div class="card-body">
+        <h5 class="card-title">Cabbage</h5>
+        <p class="card-text">Fresh green cabbages from UP.</p>
+        <span class="badge bg-success">₹110/kg</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card" data-category="Vegetables" data-price="55">
+      <img src="./assets/brinjal.jpg" class="card-img-top" alt="Brinjal">
+      <div class="card-body">
+        <h5 class="card-title">Brinjal</h5>
+        <p class="card-text">Glossy and healthy brinjals.</p>
+        <span class="badge bg-success">₹55/kg</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card" data-category="Vegetables" data-price="70">
+      <img src="./assets/spinach.webp" class="card-img-top" alt="Spinach">
+      <div class="card-body">
+        <h5 class="card-title">Spinach Bunch</h5>
+        <p class="card-text">Leafy green rich in iron.</p>
+        <span class="badge bg-success">₹70/bunch</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grains -->
+  <div class="col-md-4">
+    <div class="card" data-category="Grains" data-price="1500">
+      <img src="./assets/wheat.webp" class="card-img-top" alt="Wheat">
+      <div class="card-body">
+        <h5 class="card-title">Premium Wheat</h5>
+        <p class="card-text">High-quality grains from Punjab.</p>
+        <span class="badge bg-success">₹1500/quintal</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card" data-category="Grains" data-price="1100">
+      <img src="./assets/rice.jpg" class="card-img-top" alt="Rice">
+      <div class="card-body">
+        <h5 class="card-title">Basmati Rice</h5>
+        <p class="card-text">Fragrant grains from Haryana.</p>
+        <span class="badge bg-success">₹1100/quintal</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card" data-category="Grains" data-price="950">
+      <img src="./assets/maize.jpg" class="card-img-top" alt="Maize">
+      <div class="card-body">
+        <h5 class="card-title">Maize</h5>
+        <p class="card-text">Golden maize kernels from Bihar.</p>
+        <span class="badge bg-success">₹950/quintal</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card" data-category="Grains" data-price="1250">
+      <img src="./assets/millets.jpg" class="card-img-top" alt="Millets">
+      <div class="card-body">
+        <h5 class="card-title">Organic Millets</h5>
+        <p class="card-text">Healthy choice from Karnataka.</p>
+        <span class="badge bg-success">₹1250/quintal</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Spices -->
+  <div class="col-md-4">
+    <div class="card" data-category="Spices" data-price="600">
+      <img src="./assets/spices.jpg" class="card-img-top" alt="Spices">
+      <div class="card-body">
+        <h5 class="card-title">Dry Spices Pack</h5>
+        <p class="card-text">Mixed spices from Kerala.</p>
+        <span class="badge bg-success">₹600/pack</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card" data-category="Spices" data-price="200">
+      <img src="./assets/turmeric.jpg" class="card-img-top" alt="Turmeric">
+      <div class="card-body">
+        <h5 class="card-title">Turmeric Roots</h5>
+        <p class="card-text">Naturally dried turmeric from Andhra.</p>
+        <span class="badge bg-success">₹200/kg</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card" data-category="Spices" data-price="450">
+      <img src="./assets/redchilli.jpg" class="card-img-top" alt="Red Chilli">
+      <div class="card-body">
+        <h5 class="card-title">Dry Red Chilli</h5>
+        <p class="card-text">Fiery red chilli from Guntur.</p>
+        <span class="badge bg-success">₹450/kg</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const categoryFilter = document.getElementById('categoryFilter');
+  const priceRange = document.getElementById('priceRange');
+  const priceValue = document.getElementById('priceValue');
+  const cards = document.querySelectorAll('.card');
+
+  function filterCrops() {
+    const selectedCategory = categoryFilter.value;
+    const selectedPrice = parseInt(priceRange.value);
+    priceValue.textContent = selectedPrice;
+
+    cards.forEach(card => {
+      const cardCategory = card.getAttribute('data-category');
+      const cardPrice = parseInt(card.getAttribute('data-price'));
+
+      const matchesCategory = selectedCategory === 'All' || cardCategory === selectedCategory;
+      const matchesPrice = cardPrice <= selectedPrice;
+
+      card.parentElement.style.display = matchesCategory && matchesPrice ? 'block' : 'none';
+    });
+  }
+
+  categoryFilter.addEventListener('change', filterCrops);
+  priceRange.addEventListener('input', filterCrops);
+
+  // Initialize filters on load
+  window.addEventListener('DOMContentLoaded', () => {
+    filterCrops();
+  });
+</script>
+<script>
+  async function loadCrops() {
+    const response = await fetch('http://localhost:5000/api/crops');
+    const crops = await response.json();
+
+    const container = document.getElementById('cropContainer');
+    crops.forEach(crop => {
+      const card = document.createElement('div');
+      card.className = 'card m-2';
+      card.style.width = '18rem';
+      card.innerHTML = `
+        <img src="http://localhost:5000/${crop.imagePath}" class="card-img-top" alt="${crop.name}">
+        <div class="card-body">
+          <h5 class="card-title">${crop.name}</h5>
+          <p class="card-text">Category: ${crop.category}</p>
+          <p class="card-text">Price: ₹${crop.price}</p>
+          <p class="card-text">Quantity: ${crop.quantity}</p>
+          <p class="card-text">Location: ${crop.location}</p>
+        </div>
+      `;
+      container.appendChild(card);
+    });
+  }
+
+  window.onload = loadCrops;
+</script>
+
+<script src="js/fetchCrops.js" defer></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+>>>>>>> 4b76e3fca8c460905c0acc17cd2d25a3ca9d19ee

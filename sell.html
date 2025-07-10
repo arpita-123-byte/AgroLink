@@ -18,6 +18,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+<<<<<<< HEAD
       <ul class="navbar-nav align-items-center">
   <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
   <li class="nav-item"><a class="nav-link" href="crops.html">Browse Crops</a></li>
@@ -34,6 +35,15 @@
   </li>
 </ul>
 
+=======
+      <ul class="navbar-nav">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="crops.html">Browse Crops</a></li>
+        <li class="nav-item"><a class="nav-link" href="sell.html">Sell Crops</a></li>
+        <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+        <li class="nav-item"><a class="btn btn-success ms-3" href="register.html">Join</a></li>
+      </ul>
+>>>>>>> 4b76e3fca8c460905c0acc17cd2d25a3ca9d19ee
     </div>
   </div>
 </nav>
@@ -46,7 +56,11 @@
     <div class="container">
       <h2 class="text-center mb-4 text-white">List Your Crop for Sale</h2>
   <!-- ✅ Corrected Form -->
+<<<<<<< HEAD
 <form id="cropForm" enctype="multipart/form-data" method="POST" class="bg-white p-4 rounded shadow">
+=======
+<form id="cropForm" enctype="multipart/form-data" class="bg-white p-4 rounded shadow">
+>>>>>>> 4b76e3fca8c460905c0acc17cd2d25a3ca9d19ee
   <div class="row g-3">
     <div class="col-md-6">
       <label class="form-label">Crop Name</label>
@@ -78,11 +92,14 @@
       <label class="form-label">Location</label>
       <input type="text" class="form-control" name="location" required />
     </div>
+<<<<<<< HEAD
      <div class="col-md-12">
       <label class="form-label">E-mail</label>
       <input type="email" class="form-control" name="sellerEmail" required />
     </div>
 
+=======
+>>>>>>> 4b76e3fca8c460905c0acc17cd2d25a3ca9d19ee
 
     <div class="col-md-12">
       <label class="form-label">Description</label>
@@ -107,6 +124,7 @@
   </div>
 </section>
 
+<<<<<<< HEAD
 
 
 
@@ -121,10 +139,55 @@
   }
 
   updateCartCount();
+=======
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('cropForm');
+  const message = document.getElementById('message');
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    // ✅ Debug output to browser console
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}: ${value}`);
+    }
+
+    try {
+      const response = await fetch('http://localhost:5000/api/crops', {
+        method: 'POST',
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        message.innerText = result.message || 'Crop submitted successfully!';
+        message.style.color = 'green';
+        form.reset();
+      } else {
+        message.innerText = result.error || 'Failed to submit crop';
+        message.style.color = 'red';
+      }
+    } catch (err) {
+      message.innerText = 'Server error. Please try again.';
+      message.style.color = 'red';
+    }
+  });
+});
+>>>>>>> 4b76e3fca8c460905c0acc17cd2d25a3ca9d19ee
 </script>
 
 
 
+<<<<<<< HEAD
+=======
+<script src="js/fetchCrops.js"></script>
+
+
+>>>>>>> 4b76e3fca8c460905c0acc17cd2d25a3ca9d19ee
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

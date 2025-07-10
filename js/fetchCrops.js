@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
   const cropGrid = document.getElementById('cropGrid');
+<<<<<<< HEAD
   const categoryFilter = document.getElementById('categoryFilter');
   const priceRange = document.getElementById('priceRange');
   const priceValue = document.getElementById('priceValue');
@@ -19,12 +20,22 @@ document.addEventListener('DOMContentLoaded', async () => {
         : 'http://localhost:5000/api/crops'
     );
     crops = await response.json();
+=======
+
+  try {
+    const response = await fetch('http://localhost:5000/api/crops');
+    const crops = await response.json();
+>>>>>>> 4b76e3fca8c460905c0acc17cd2d25a3ca9d19ee
 
     if (!Array.isArray(crops)) {
       cropGrid.innerHTML = `<p class="text-danger">Invalid data from server.</p>`;
       return;
     }
 
+<<<<<<< HEAD
+=======
+    // Clear any existing cards
+>>>>>>> 4b76e3fca8c460905c0acc17cd2d25a3ca9d19ee
     cropGrid.innerHTML = '';
 
     crops.forEach(crop => {
@@ -32,6 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       cardWrapper.className = 'col-md-4';
 
       cardWrapper.innerHTML = `
+<<<<<<< HEAD
         <a href="crop-detail.html?id=${crop._id}" class="text-decoration-none text-dark">
           <div class="card h-100" data-category="${crop.category}" data-price="${crop.price}">
             <img src="http://localhost:5000${crop.image}" class="card-img-top" alt="${crop.name}">
@@ -43,11 +55,25 @@ document.addEventListener('DOMContentLoaded', async () => {
             </div>
           </div>
         </a>
+=======
+        <div class="card" data-category="${crop.category}" data-price="${crop.price}">
+         <img src="http://localhost:5000/${crop.image.replace(/\\/g, '/')}" class="card-img-top" alt="${crop.name}">
+
+
+          <div class="card-body">
+            <h5 class="card-title">${crop.name}</h5>
+            <p class="card-text">${crop.description}</p>
+            <p class="text-muted mb-1">${crop.quantity} from ${crop.location}</p>
+            <span class="badge bg-success">₹${crop.price}</span>
+          </div>
+        </div>
+>>>>>>> 4b76e3fca8c460905c0acc17cd2d25a3ca9d19ee
       `;
 
       cropGrid.appendChild(cardWrapper);
     });
 
+<<<<<<< HEAD
     cropCards = document.querySelectorAll('.card');
 
     function filterCrops() {
@@ -78,12 +104,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     filterCrops(); // Apply filters after rendering
 
+=======
+>>>>>>> 4b76e3fca8c460905c0acc17cd2d25a3ca9d19ee
   } catch (error) {
     console.error('Error fetching crops:', error);
     cropGrid.innerHTML = `<p class="text-danger">Failed to load crops. Please try again later.</p>`;
   }
 });
 
+<<<<<<< HEAD
 // 🔍 Live search suggestions (if used in crops.html)
 const searchInput = document.getElementById("searchInput");
 const suggestionsList = document.getElementById("suggestionsList");
@@ -133,6 +162,8 @@ if (searchInput && suggestionsList) {
     }
   });
 }
+=======
+>>>>>>> 4b76e3fca8c460905c0acc17cd2d25a3ca9d19ee
 
 
 
