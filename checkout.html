@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout | AgroLink</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/checkout.css" />
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-success" href="#">AgroLink</a>
+    </div>
+  </nav>
+
+  <!-- Main Checkout Section -->
+  <div class="container mt-5 pt-5">
+    <h2 class="mb-4">Checkout</h2>
+
+    <div class="row g-4">
+      <!-- Shipping Form -->
+      <div class="col-md-6">
+        <div class="checkout-card">
+          <h5 class="mb-3">Shipping Address</h5>
+          <form id="checkoutForm">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="fullName" placeholder="Full Name" required>
+              <label for="fullName">Full Name</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="email" placeholder="Email Address" required>
+              <label for="email">Email Address</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="tel" class="form-control" id="phone" placeholder="Phone Number" required>
+              <label for="phone">Phone Number</label>
+            </div>
+            <div class="form-floating mb-3">
+              <textarea class="form-control" placeholder="Address" id="address" required
+                style="height: 80px;"></textarea>
+              <label for="address">Address</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="city" placeholder="City" required>
+              <label for="city">City</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="state" placeholder="State" required>
+              <label for="state">State</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="pincode" placeholder="Pincode" required>
+              <label for="pincode">Pincode</label>
+
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="date" class="form-control" id="deliveryDate" required>
+              <label for="deliveryDate">Expected Delivery Date</label>
+              <input type="date" id="deliveryDate" hidden>
+
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <!-- Summary Section -->
+      <div class="col-md-6">
+        <div class="checkout-card">
+          <h5 class="mb-3">Price Details</h5>
+          <ul class="list-group list-group-flush mb-3">
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total MRP</span>
+              <strong>₹<span id="subtotal">0</span></strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>GST (5%)</span>
+              <strong>₹<span id="gst">0</span></strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Delivery Charges</span>
+              <strong>₹<span id="delivery">50</span></strong>
+            </li>
+            <li class="list-group-item d-flex justify-content-between text-success">
+              <span>Coupon Discount</span>
+              <strong>- ₹<span id="discount">0</span></strong>
+            </li>
+          </ul>
+          <div class="d-flex justify-content-between fs-5 border-top pt-3">
+            <strong>Total Amount</strong>
+            <strong>₹<span id="total">0</span></strong>
+          </div>
+          <button class="btn btn-danger mt-4 w-100 fw-bold" id="placeOrderBtn">PLACE ORDER</button>
+          <div id="confirmationMsg" class="mt-4 text-success fw-bold text-center"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ <script>
+  let cartItems = [];
+
+  // 👇 Check if user clicked "Buy Now"
+  const singleItem = localStorage.getItem("checkoutItem");
+  if (singleItem) {
+    cartItems = [JSON.parse(singleItem)];
+    localStorage.removeItem("checkoutItem"); // Clear it after use
+  } else {
+    const savedCart = localStorage.getItem("cart");
+    cartItems = savedCart ? JSON.parse(savedCart) : [];
+  }
+
+  const subtotal = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const gst = +(subtotal * 0.05).toFixed(2);
+  const delivery = 50;
+  const discount = 0;
+  const total = subtotal + gst + delivery - discount;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("subtotal").textContent = subtotal;
+    document.getElementById("gst").textContent = gst;
+    document.getElementById("total").textContent = total;
+    document.getElementById("discount").textContent = discount;
+
+    // Auto-fill expected delivery date to 3 days from now
+    const deliveryDateInput = document.getElementById("deliveryDate");
+    const today = new Date();
+    today.setDate(today.getDate() + 3);
+    deliveryDateInput.value = today.toISOString().split("T")[0];
+  });
+
+  document.getElementById("placeOrderBtn").addEventListener("click", async () => {
+    const fullName = document.getElementById("fullName").value;
+    const phone = document.getElementById("phone").value;
+    const email = document.getElementById("email").value;
+    const address = document.getElementById("address").value;
+    const city = document.getElementById("city").value;
+    const state = document.getElementById("state").value;
+    const pincode = document.getElementById("pincode").value;
+    const expectedDeliveryDate = document.getElementById("deliveryDate").value;
+
+    if (!fullName || !phone || !email || !address || !city || !state || !pincode || !expectedDeliveryDate) {
+      alert("Please fill in all required fields.");
+      return;
+    }
+
+    try {
+      const res = await fetch("http://localhost:5000/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          customer: { fullName, phone, email, address, city, state, pincode },
+          items: cartItems,
+          totalAmount: total,
+          gst,
+          delivery,
+          expectedDeliveryDate
+        })
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        localStorage.removeItem("cart");
+        localStorage.setItem("orderId", data.orderId);
+        window.location.href = "/order-confirmation.html";
+      } else {
+        alert("Error placing order. Please try again.");
+      }
+    } catch (error) {
+      alert("Something went wrong.");
+      console.error(error);
+    }
+  });
+</script>
+
+
+
+</body>
+
+</html>

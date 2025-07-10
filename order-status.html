@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Order Status | AgroLink</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    .order-card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .order-status {
+      font-weight: bold;
+      color: #28a745;
+    }
+    .search-bar {
+      max-width: 400px;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+<div class="container py-5">
+  <h2 class="mb-4 text-center">🧾 Track & Manage Your Orders</h2>
+
+  <!-- Search Order by ID -->
+  <div class="d-flex justify-content-center mb-4">
+    <input id="orderIdInput" class="form-control me-2 search-bar" placeholder="Enter Order ID" />
+    <button class="btn btn-primary" onclick="searchOrder()">Search Order</button>
+  </div>
+
+  <!-- Filter Dropdown -->
+  <div class="text-center mb-4">
+    <select id="statusFilter" class="form-select w-auto d-inline" onchange="loadOrders()">
+      <option value="">Status For Order</option>
+      <option value="Confirmed">Confirmed</option>
+      <option value="Packed">Packed</option>
+      <option value="Shipped">Shipped</option>
+      <option value="Out for Delivery">Out for Delivery</option>
+      <option value="Delivered">Delivered</option>
+      <option value="Cancelled">Cancelled</option>
+      <option value="Returned">Returned</option>
+    </select>
+  </div>
+
+  <div id="ordersContainer"></div>
+</div>
+
+<!-- Custom Cancel Confirmation Modal -->
+<div class="modal fade" id="confirmCancelModal" tabindex="-1" aria-labelledby="confirmCancelLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Cancellation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">Are you sure you want to cancel this order?</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button id="confirmCancelBtn" type="button" class="btn btn-danger">Yes, Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const email = localStorage.getItem("userEmail");
+  let selectedOrderId = null;
+
+  async function loadOrders() {
+    if (!email) return document.getElementById("ordersContainer").innerHTML = "<p>Please login first.</p>";
+
+    const status = document.getElementById("statusFilter").value;
+    const res = await fetch(`/api/orders?email=${email}`);
+    const data = await res.json();
+    let orders = data.orders || [];
+
+    if (status) {
+      orders = orders.filter(o => o.status === status);
+    }
+
+    displayOrders(orders);
+  }
+
+  function displayOrders(orders) {
+    const container = document.getElementById("ordersContainer");
+    if (!orders.length) {
+      container.innerHTML = "<p class='text-center'>No orders found.</p>";
+      return;
+    }
+
+    container.innerHTML = orders.map(order => `
+      <div class="order-card bg-white">
+        <h5>Order ID: ${order._id}</h5>
+        <p><strong>Status:</strong> <span class="order-status">${order.status}</span></p>
+        <p><strong>Expected Delivery:</strong> ${new Date(order.expectedDeliveryDate).toDateString()}</p>
+        <p><strong>Total:</strong> ₹${order.totalAmount}</p>
+        <ul>${order.items.map(i => `<li>${i.name} x ${i.quantity}</li>`).join("")}</ul>
+        ${getActionButtons(order)}
+      </div>
+    `).join("");
+  }
+
+  function getActionButtons(order) {
+    if (order.status === "Confirmed" || order.status === "Packed") {
+      return `<button class="btn btn-outline-danger btn-sm" onclick="promptCancel('${order._id}')">Cancel Order</button>`;
+    }
+    if (order.status === "Delivered") {
+      return `<button class="btn btn-outline-warning btn-sm" onclick="returnOrder('${order._id}')">Return Order</button>`;
+    }
+    return "";
+  }
+
+  function promptCancel(orderId) {
+    selectedOrderId = orderId;
+    const modal = new bootstrap.Modal(document.getElementById("confirmCancelModal"));
+    modal.show();
+  }
+
+  document.getElementById("confirmCancelBtn").addEventListener("click", async () => {
+    if (!selectedOrderId) return;
+
+    const res = await fetch(`/api/orders/${selectedOrderId}/cancel`, { method: "PATCH" });
+    const result = await res.json();
+    if (result.success) {
+      alert("Order cancelled successfully.");
+      loadOrders();
+    } else {
+      alert("Error: " + result.message);
+    }
+  });
+
+  async function returnOrder(orderId) {
+    const confirmReturn = confirm("Are you sure you want to return this order?");
+    if (!confirmReturn) return;
+
+    const res = await fetch(`/api/orders/${orderId}/return`, { method: "PATCH" });
+    const result = await res.json();
+    if (result.success) {
+      alert("Order returned successfully.");
+      loadOrders();
+    } else {
+      alert("Error: " + result.message);
+    }
+  }
+
+  async function searchOrder() {
+    const input = document.getElementById("orderIdInput").value.trim();
+    if (!input) return;
+
+    const res = await fetch(`/api/orders?id=${input}`);
+    const data = await res.json();
+    const orders = data.orders || [];
+    displayOrders(orders.filter(o => o._id === input));
+  }
+
+  document.addEventListener("DOMContentLoaded", loadOrders);
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+

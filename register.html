@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Subscribe for Free Delivery | AgroLink</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/subscription.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-success" href="index.html">AgroLink</a>
+    </div>
+  </nav>
+
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card p-5 shadow-lg" style="max-width: 500px; width: 100%;">
+      <h2 class="text-center text-success mb-3">AgroLink Premium</h2>
+      <p class="text-center text-muted mb-2">Subscribe and enjoy <strong>Free Delivery</strong> on all your crop purchases.</p>
+      <h4 class="text-center text-dark mb-4">Just ₹199/month</h4>
+      
+      <form action="/subscribe" method="POST">
+        <div class="mb-3">
+          <label for="name" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="name" name="name" required />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email or Phone</label>
+          <input type="text" class="form-control" id="email" name="email" required />
+        </div>
+        <button type="submit" class="btn btn-success w-100">Subscribe Now</button>
+      </form>
+
+      <p class="text-center mt-3 mb-0">
+        <a href="index.html" class="text-decoration-none">Back to Home</a>
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>
+

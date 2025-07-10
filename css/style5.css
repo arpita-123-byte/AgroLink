@@ -1,0 +1,24 @@
+body {
+  background-color: #f0f4f3;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding-top: 80px;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  border: none;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #218838;
+}
+#cart-count {
+  font-size: 0.7rem;
+  padding: 5px 7px;
+}

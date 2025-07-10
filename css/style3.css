@@ -1,0 +1,168 @@
+/* Full-page background */
+.background-image {
+  background-image: url('../assets/signup-bg.jpg'); /* Put your image in /images/ folder */
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  filter: brightness(0.6);
+}
+.navbar {
+  padding: 0.8rem 0;
+  background-color: #fff !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  z-index: 1030;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #198754 !important;
+}
+
+.navbar .nav-link {
+  color: #333;
+  margin-left: 15px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #198754 !important;
+}
+
+.navbar .btn-success {
+  font-weight: 500;
+  padding: 6px 16px;
+  font-size: 0.95rem;
+  border-radius: 6px;
+}
+
+/* Centered glass form */
+.form-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  color: white;
+  text-align: center;
+}
+
+/* AgroLink title inside the form */
+.brand {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #00ff95;
+  letter-spacing: 1px;
+}
+
+/* Inputs and button */
+form input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+form input::placeholder {
+  color: #eee;
+}
+
+form button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #00c57d;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+form button[type="submit"]:hover {
+  background-color: #00a96b;
+}
+
+/* OR Divider */
+.or-divider {
+  margin: 20px 0 10px;
+  color: #eee;
+}
+
+/* Social Buttons - already added earlier */
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.social-buttons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.social-buttons img {
+  width: 20px;
+  height: 20px;
+}
+
+.google-button {
+  background-color: #fff;
+  color: #444;
+  border: 1px solid #ddd;
+}
+
+.google-button:hover {
+  background-color: #f2f2f2;
+  transform: translateY(-1px);
+}
+
+.facebook-button {
+  background-color: #1877f2;
+  color: #fff;
+}
+
+.facebook-button:hover {
+  background-color: #155dc0;
+  transform: translateY(-1px);
+}
+
+/* Link text */
+form p {
+  color: #ccc;
+}
+form a {
+  color: #00ff95;
+  text-decoration: none;
+}
+form a:hover {
+  text-decoration: underline;
+}
+#cart-count {
+  font-size: 0.7rem;
+  padding: 5px 7px;
+}
+

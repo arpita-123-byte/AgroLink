@@ -1,0 +1,56 @@
+.navbar {
+  padding: 0.8rem 0;
+  background-color: #fff !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  z-index: 1030;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #198754 !important;
+}
+
+.navbar .nav-link {
+  color: #333;
+  margin-left: 15px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+  color: #198754 !important;
+}
+
+.navbar .btn-success {
+  font-weight: 500;
+  padding: 6px 16px;
+  font-size: 0.95rem;
+  border-radius: 6px;
+}
+.btn-outline-success {
+  border: 2px solid #28a745;
+  color: #28a745;
+  background: white;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-success:hover {
+  background: #28a745;
+  color: white;
+}
+
+.d-flex.gap-3 > .btn {
+  min-width: 130px;
+}
+#cart-count {
+  font-size: 0.7rem;
+  padding: 5px 7px;
+}
+#quantityControls button {
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+}

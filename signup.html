@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Signup - AgroLink</title>
+  <link rel="stylesheet" href="css/style3.css" />
+</head>
+<body>
+  <div class="background-image"></div>
+
+  <div class="form-container">
+    <h1 class="brand">AgroLink</h1>
+    <h2>Create Account</h2>
+
+    <form id="signupForm">
+      <input type="text" name="name" placeholder="Name" required />
+      <input type="email" id="email" name="email" placeholder="Email" required />
+      <input type="password" name="password" placeholder="Password" required />
+      <input type="password" name="confirmPassword" placeholder="Confirm Password" required />
+      <button type="submit">Sign Up</button>
+
+      <p>Already have an account? <a href="login.html">Login</a></p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const form = e.target;
+      const email = document.getElementById("email").value;
+
+      const data = {
+        name: form.name.value,
+        email: email,
+        password: form.password.value,
+        confirmPassword: form.confirmPassword.value,
+      };
+
+      try {
+        const response = await fetch('http://localhost:5000/signup', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+          localStorage.setItem("userEmail", email); // ✅ Store email for orders
+          window.location.href = "index.html";
+        } else {
+          const error = await response.text();
+          alert("Signup failed: " + error);
+        }
+      } catch (err) {
+        alert("Error: " + err.message);
+      }
+    });
+  </script>
+</body>
+</html>
+
+
+

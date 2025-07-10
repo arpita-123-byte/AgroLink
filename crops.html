@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Browse Crops | AgroLink</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style1.css" />
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold text-success" href="#">AgroLink</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+     <ul class="navbar-nav align-items-center">
+      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="crops.html">Browse Crops</a></li>
+      <li class="nav-item"><a class="nav-link" href="sell.html">Sell Crops</a></li>
+      <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+      <li class="nav-item"><a class="btn btn-success ms-3" href="register.html">Join</a></li>
+      <li class="nav-item ms-3">
+        <a class="nav-link position-relative" href="cart.html">
+          🛒 Cart
+          <span id="cart-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            0
+          </span>
+        </a>
+      </li>
+    </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid mt-5 pt-4">
+  <div class="row">
+
+    <!-- Sidebar Filters -->
+    <div class="col-md-3 bg-light p-4">
+      <div class="sticky-top" style="top: 80px;">
+        <h5>Filters</h5>
+        <div class="mb-3">
+          <label class="form-label">Category</label>
+          <select class="form-select" id="categoryFilter">
+            <option value="All">All</option>
+            <option value="Fruits">Fruits</option>
+            <option value="Vegetables">Vegetables</option>
+            <option value="Grains">Grains</option>
+            <option value="Spices">Spices</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Price Range</label>
+          <input type="range" class="form-range" min="10" max="5000" id="priceRange" value="5000" />
+          <p class="text-muted">Up to ₹<span id="priceValue">5000</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Crop Grid -->
+    <div class="col-md-9 p-4">
+      <div class="row g-4" id="cropGrid">
+        <!-- Cards will be inserted here dynamically -->
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- JS -->
+<script src="js/fetchCrops.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const count = cart.reduce((total, item) => total + item.quantity, 0);
+    const badge = document.getElementById("cart-count");
+    if (badge) badge.textContent = count;
+  }
+
+  updateCartCount();
+</script>
+
+</body>
+</html>
+
+
+
+
